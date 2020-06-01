@@ -126,6 +126,7 @@
             this.MinimumSize = new System.Drawing.Size(965, 642);
             this.Name = "MedicineDisplay";
             this.Text = "MedicineDisplay";
+            this.Load += new System.EventHandler(this.MedicineDisplay_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
