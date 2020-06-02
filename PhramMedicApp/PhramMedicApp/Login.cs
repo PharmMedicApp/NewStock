@@ -22,7 +22,6 @@ namespace PhramMedicApp
         {
 
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
             try
@@ -83,6 +82,12 @@ namespace PhramMedicApp
             }
 
 
+        }
+        private void button2_Click(object sender, EventArgs e)
+        {
+            
+            MedicineDisplay mdc = new MedicineDisplay();
+            mdc.Show();
         }
     }
 }
