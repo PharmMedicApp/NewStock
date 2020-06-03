@@ -104,6 +104,7 @@
             this.QrButton.TabIndex = 6;
             this.QrButton.Text = "QR Kod ile İlaç Ara";
             this.QrButton.UseVisualStyleBackColor = true;
+            this.QrButton.Click += new System.EventHandler(this.QrButton_Click);
             // 
             // pictureBox2
             // 

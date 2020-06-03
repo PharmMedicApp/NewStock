@@ -9,6 +9,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ZXing;
 
 namespace PhramMedicApp
 {
@@ -132,7 +133,82 @@ namespace PhramMedicApp
                 }
             }
         }
-    
-}
+
+        private void QrButton_Click(object sender, EventArgs e)
+        {
+            Camera cam = new Camera();
+            cam.Show();
+            while (cam.a==false)
+            {
+                
+
+                
+                SqlConnectionStringBuilder conn = new SqlConnectionStringBuilder();
+                conn.DataSource = "medic-server.database.windows.net";
+                conn.UserID = "medic_admin";
+                conn.Password = "sXbPj8pMzy";
+                conn.InitialCatalog = "MedicAppDB";
+
+                this.richTextBox1.Clear();
+                using (SqlConnection conx = new SqlConnection(conn.ConnectionString))
+                {
+                    using (SqlCommand cmd3 = new SqlCommand("select * from t_medicine where barcode = '" + cam.k + "'"))
+                    {
+                        cmd3.Connection = conx;
+                        conx.Open();
+                        using (SqlDataReader rde = cmd3.ExecuteReader())
+                        {
+
+                            DataTable dt = new DataTable();
+                            dt.Load(rde);
+                            this.dataGridView1.DataSource = dt;
+                        }
+                        conx.Close();
+                    }
+                    using (SqlCommand cmd4 = new SqlCommand("select prospectus from t_prospectus where barcode = '" + cam.k + "'"))
+                    {
+                        cmd4.Connection = conx;
+                        conx.Open();
+                        using (SqlDataReader rdx = cmd4.ExecuteReader())
+                        {
+                            while (rdx.Read())
+                            {
+                                this.richTextBox1.Text = rdx.GetValue(0).ToString();
+                            }
+                        }
+                        conx.Close();
+                    }
+                    using (SqlCommand cmd5 = new SqlCommand("select picture_path from t_medicine_pic where barcode = '" +cam.k + "'"))
+                    {
+                        cmd5.Connection = conx;
+                        conx.Open();
+                        using (SqlDataReader rdr1 = cmd5.ExecuteReader())
+                        {
+                            while (rdr1.Read())
+                            {
+                                WebRequest request = WebRequest.Create("https://" + rdr1.GetValue(0).ToString());
+
+                                using (var response = request.GetResponse())
+                                {
+                                    using (var str = response.GetResponseStream())
+                                    {
+                                        this.pictureBox1.Image = Bitmap.FromStream(str);
+                                    }
+                                }
+                            }
+                        }
+                        conx.Close();
+                    }
+
+                }
+                cam.a = true;
+            }
+
+
+
+        }
+    }
 
 }
+    
+
