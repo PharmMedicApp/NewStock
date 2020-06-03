@@ -47,8 +47,6 @@ namespace PhramMedicApp
                 comboBox1.Items.Add(fi.Name);
             }
             comboBox1.SelectedIndex = 0;
-
-            
         }
         
         public void timer1_Tick(object sender, EventArgs e)
@@ -60,25 +58,26 @@ namespace PhramMedicApp
                 if (result != null)
                 {
                     timer1.Stop();
-                    k = result.ToString();
+                    barcode = result.ToString();
                     CloseTheCam();
                     this.Close();
-                    a = true;
-
                 }
             }
         }
-        public string k { get; set; }
+
+        public string barcode { get; set; }
         public bool a { get; set; }
+
         private void Camera_FormClosing(object sender, FormClosingEventArgs e)
         {
             CloseTheCam();
         }
+
         private void CloseTheCam()
         {
             if (vcd.IsRunning)
             {
-                a = false;
+                a = true;
                 vcd.Stop();
             }
             

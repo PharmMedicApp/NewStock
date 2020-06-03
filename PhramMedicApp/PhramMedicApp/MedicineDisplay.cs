@@ -137,12 +137,10 @@ namespace PhramMedicApp
         private void QrButton_Click(object sender, EventArgs e)
         {
             Camera cam = new Camera();
-            cam.Show();
-            while (cam.a==false)
+            cam.ShowDialog();
+            while (cam.a)
             {
-                
-
-                
+                MessageBox.Show("test");
                 SqlConnectionStringBuilder conn = new SqlConnectionStringBuilder();
                 conn.DataSource = "medic-server.database.windows.net";
                 conn.UserID = "medic_admin";
@@ -152,7 +150,7 @@ namespace PhramMedicApp
                 this.richTextBox1.Clear();
                 using (SqlConnection conx = new SqlConnection(conn.ConnectionString))
                 {
-                    using (SqlCommand cmd3 = new SqlCommand("select * from t_medicine where barcode = '" + cam.k + "'"))
+                    using (SqlCommand cmd3 = new SqlCommand("select * from t_medicine where barcode = '" + cam.barcode + "'"))
                     {
                         cmd3.Connection = conx;
                         conx.Open();
@@ -165,7 +163,7 @@ namespace PhramMedicApp
                         }
                         conx.Close();
                     }
-                    using (SqlCommand cmd4 = new SqlCommand("select prospectus from t_prospectus where barcode = '" + cam.k + "'"))
+                    using (SqlCommand cmd4 = new SqlCommand("select prospectus from t_prospectus where barcode = '" + cam.barcode + "'"))
                     {
                         cmd4.Connection = conx;
                         conx.Open();
@@ -178,7 +176,7 @@ namespace PhramMedicApp
                         }
                         conx.Close();
                     }
-                    using (SqlCommand cmd5 = new SqlCommand("select picture_path from t_medicine_pic where barcode = '" +cam.k + "'"))
+                    using (SqlCommand cmd5 = new SqlCommand("select picture_path from t_medicine_pic where barcode = '" +cam.barcode + "'"))
                     {
                         cmd5.Connection = conx;
                         conx.Open();
@@ -199,16 +197,11 @@ namespace PhramMedicApp
                         }
                         conx.Close();
                     }
-
                 }
-                cam.a = true;
+                cam.a = false;
             }
-
-
-
         }
     }
-
 }
     
 
