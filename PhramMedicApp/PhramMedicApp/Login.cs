@@ -18,10 +18,7 @@ namespace PhramMedicApp
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
 
-        }
         private void button1_Click(object sender, EventArgs e)
         {
             try
@@ -54,11 +51,18 @@ namespace PhramMedicApp
                                     switch (reader["status"])
                                     {
                                         case "ECZ":
+                                            this.Hide();
+                                            MedicineDisplayECZ ecz = new MedicineDisplayECZ();
+                                            ecz.status = reader["status"].ToString();
+                                            ecz.Show();
                                             break;
                                         case "KLF":
                                             break;
                                         case "STK":
-                                            break;
+                                            this.Hide();
+                                            StockDisp stock = new StockDisp(reader["status"].ToString());
+                                            stock.Show();
+                                            break; 
                                     }
                                 }
                                 else if(tb_username.Text != reader["username"].ToString() && tb_password.Text == reader["password"].ToString())

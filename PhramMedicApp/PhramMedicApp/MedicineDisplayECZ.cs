@@ -14,7 +14,8 @@ namespace PhramMedicApp
 {
     public partial class MedicineDisplayECZ : Form
     {
-        SqlConnectionStringBuilder conn = new SqlConnectionStringBuilder() { 
+        public string status { get; set; }
+        SqlConnectionStringBuilder connStr = new SqlConnectionStringBuilder() { 
             DataSource = "medic-server.database.windows.net", 
             UserID = "medic_admin", 
             Password = "sXbPj8pMzy", 
@@ -28,7 +29,7 @@ namespace PhramMedicApp
 
         private void MedicineDisplayECZ_Load(object sender, EventArgs e)
         {
-            using (SqlConnection connection = new SqlConnection(conn.ConnectionString))
+            using (SqlConnection connection = new SqlConnection(connStr.ConnectionString))
             {
                 connection.Open();
                 using (SqlCommand command = new SqlCommand("select * from t_medicine", connection))
@@ -62,7 +63,7 @@ namespace PhramMedicApp
         {
             try
             {
-                using (SqlConnection connection = new SqlConnection(conn.ConnectionString))
+                using (SqlConnection connection = new SqlConnection(connStr.ConnectionString))
                 {
                     medicineList.DataSource = null;
                     prosRTB.Clear();
@@ -112,6 +113,17 @@ namespace PhramMedicApp
             {
                 MessageBox.Show("Bir ilaç seçmediniz!\n" + ex.ToString(), "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void MedicineDisplayECZ_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void dispStock_Click(object sender, EventArgs e)
+        {
+            StockDisp stockDisp = new StockDisp(this.status);
+            stockDisp.Show();
         }
     }
 }

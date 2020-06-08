@@ -71,6 +71,7 @@
             this.dispStock.TabIndex = 2;
             this.dispStock.Text = "Stok Görüntüle";
             this.dispStock.UseVisualStyleBackColor = true;
+            this.dispStock.Click += new System.EventHandler(this.dispStock_Click);
             // 
             // dispMed
             // 
@@ -84,6 +85,8 @@
             // 
             // medicineCB
             // 
+            this.medicineCB.BackColor = System.Drawing.SystemColors.Window;
+            this.medicineCB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.medicineCB.FormattingEnabled = true;
             this.medicineCB.Location = new System.Drawing.Point(203, 285);
             this.medicineCB.Name = "medicineCB";
@@ -95,13 +98,14 @@
             this.prosRTB.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.prosRTB.BackColor = System.Drawing.SystemColors.Window;
             this.prosRTB.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.prosRTB.Location = new System.Drawing.Point(6, 21);
             this.prosRTB.Name = "prosRTB";
             this.prosRTB.ReadOnly = true;
-            this.prosRTB.Size = new System.Drawing.Size(325, 731);
+            this.prosRTB.Size = new System.Drawing.Size(333, 731);
             this.prosRTB.TabIndex = 5;
-            this.prosRTB.Text = "";
+            this.prosRTB.Text = "(İlaç Prospektüs Ekranı)";
             // 
             // groupBox1
             // 
@@ -109,9 +113,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.prosRTB);
-            this.groupBox1.Location = new System.Drawing.Point(924, 12);
+            this.groupBox1.Location = new System.Drawing.Point(916, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(331, 758);
+            this.groupBox1.Size = new System.Drawing.Size(339, 758);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Prospektüs";
@@ -161,6 +165,7 @@
             this.MinimumSize = new System.Drawing.Size(1285, 839);
             this.Name = "MedicineDisplayECZ";
             this.Text = "MedicineDisplayECZ";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MedicineDisplayECZ_FormClosed);
             this.Load += new System.EventHandler(this.MedicineDisplayECZ_Load);
             ((System.ComponentModel.ISupportInitialize)(this.medicineList)).EndInit();
             this.groupBox1.ResumeLayout(false);

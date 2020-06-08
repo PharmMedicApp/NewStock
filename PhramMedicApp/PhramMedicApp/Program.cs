@@ -16,7 +16,7 @@ namespace PhramMedicApp
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MedicineDisplayECZ());
+            Application.Run(new Login());
         }
     }
 }
