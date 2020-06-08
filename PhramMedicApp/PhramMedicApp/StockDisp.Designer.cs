@@ -152,6 +152,7 @@ namespace PhramMedicApp
                     this.buyMed.Anchor = AnchorStyles.Top;
                     this.buyMed.Click += new System.EventHandler(this.buyMed_Click);
                     break;
+
                 case "KLF":
                     // 
                     // sellMed
