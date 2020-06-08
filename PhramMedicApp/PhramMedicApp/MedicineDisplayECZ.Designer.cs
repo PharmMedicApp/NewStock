@@ -62,6 +62,7 @@
             this.dispQR.TabIndex = 1;
             this.dispQR.Text = "QR Kod ile Ara";
             this.dispQR.UseVisualStyleBackColor = true;
+            this.dispQR.Click += new System.EventHandler(this.dispQR_Click);
             // 
             // dispStock
             // 

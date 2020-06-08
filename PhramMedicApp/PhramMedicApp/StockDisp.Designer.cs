@@ -48,6 +48,7 @@ namespace PhramMedicApp
             this.groupBox1.Controls.Add(this.dispMed);
             this.groupBox1.Controls.Add(this.medCB);
             this.groupBox1.Controls.Add(this.stockList);
+            this.groupBox1.Controls.Add(this.qrDisp);
             this.groupBox1.Location = new System.Drawing.Point(13, 13);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(1239, 344);
@@ -102,7 +103,7 @@ namespace PhramMedicApp
             this.qrDisp.UseVisualStyleBackColor = true;
             this.qrDisp.Anchor = AnchorStyles.None;
             this.qrDisp.Anchor = AnchorStyles.Top;
-            //this.qrDisp.Click += new System.EventHandler(this.qrDisp_Click);
+            this.qrDisp.Click += new System.EventHandler(this.qrDisp_Click);
 
 
             // 

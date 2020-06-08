@@ -77,8 +77,9 @@ namespace PhramMedicApp
         {
             if (vcd.IsRunning)
             {
-                a = true;
+                
                 vcd.Stop();
+                a = true;
             }
             
         }

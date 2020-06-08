@@ -140,7 +140,7 @@ namespace PhramMedicApp
             cam.ShowDialog();
             while (cam.a)
             {
-                MessageBox.Show("test");
+               
                 SqlConnectionStringBuilder conn = new SqlConnectionStringBuilder();
                 conn.DataSource = "medic-server.database.windows.net";
                 conn.UserID = "medic_admin";

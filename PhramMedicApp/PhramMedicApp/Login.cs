@@ -57,6 +57,10 @@ namespace PhramMedicApp
                                             ecz.Show();
                                             break;
                                         case "KLF":
+                                            this.Hide();
+                                            MedicineDisplayECZ eck = new MedicineDisplayECZ();
+                                            eck.status = reader["status"].ToString();
+                                            eck.Show();
                                             break;
                                         case "STK":
                                             this.Hide();

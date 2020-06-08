@@ -29,7 +29,7 @@ namespace PhramMedicApp
         }
 
         private void StockDisp_Load(object sender, EventArgs e)
-        {
+        { 
             using (SqlConnection connection = new SqlConnection(connStr.ConnectionString))
             {
                 connection.Open();
@@ -59,6 +59,34 @@ namespace PhramMedicApp
             }
         }
 
+        private void qrDisp_Click(object sender, EventArgs e)
+        {
+            Camera camx = new Camera();
+            camx.ShowDialog();
+           
+            while (camx.a)
+            {
+                using(SqlConnection connection =new SqlConnection(connStr.ConnectionString))
+                {
+                    connection.Open();
+                    
+                    using (SqlCommand cmdx = new SqlCommand("select * from t_stock where barcode = '" + camx.barcode + "'", connection))
+                    {
+                        
+                        
+                        using (SqlDataReader redr = cmdx.ExecuteReader())
+                        {
+                            DataTable dtx = new DataTable();
+                            dtx.Load(redr);
+                            this.stockList.DataSource = dtx;
+
+                        }
+                        connection.Close();
+                        camx.a = false;
+                    }
+                }
+            }
+        }
         private void dispMed_Click(object sender, EventArgs e)
         {
             try
@@ -72,9 +100,10 @@ namespace PhramMedicApp
                         {
                             DataTable dt = new DataTable();
                             dt.Load(reader);
-                            stockList.DataSource = dt;
+                            this.stockList.DataSource = dt;
                         }
                     }
+                    connection.Close();
                 }
             }
             catch(System.NullReferenceException ex) 
@@ -82,6 +111,7 @@ namespace PhramMedicApp
                 MessageBox.Show("İlaç Seçmediniz.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
 
         private void buyMed_Click(object sender, EventArgs e)
         {
