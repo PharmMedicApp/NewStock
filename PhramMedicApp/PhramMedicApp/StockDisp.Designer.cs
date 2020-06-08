@@ -37,9 +37,20 @@ namespace PhramMedicApp
             this.buyMed = new System.Windows.Forms.Button();
             this.sellMed = new System.Windows.Forms.Button();
             this.qrDisp = new System.Windows.Forms.Button();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            
+            this.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.stockList)).BeginInit();
             this.SuspendLayout();
+
+            // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.Location = new System.Drawing.Point(718, 22);
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(70, 40);
+            this.numericUpDown1.TabIndex = 0;
             // 
             // groupBox1
             // 
@@ -49,6 +60,7 @@ namespace PhramMedicApp
             this.groupBox1.Controls.Add(this.medCB);
             this.groupBox1.Controls.Add(this.stockList);
             this.groupBox1.Controls.Add(this.qrDisp);
+            this.groupBox1.Controls.Add(this.numericUpDown1);
             this.groupBox1.Location = new System.Drawing.Point(13, 13);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(1239, 344);
@@ -186,5 +198,6 @@ namespace PhramMedicApp
         private System.Windows.Forms.Button sellMed;
         private System.Windows.Forms.Button buyMed;
         private System.Windows.Forms.Button qrDisp;
+        private System.Windows.Forms.NumericUpDown numericUpDown1;
     }
 }

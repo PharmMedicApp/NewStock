@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -115,7 +116,51 @@ namespace PhramMedicApp
 
         private void buyMed_Click(object sender, EventArgs e)
         {
+            string k = this.medCB.SelectedItem.ToString();
+            int val = Convert.ToInt32(this.numericUpDown1.Value);
+            
+            int variabl =0;
+            var updateQuery = String.Format("update t_stock set stock = stock + {0} where name = {1}", val, k);
+            var displayupdatedStock = String.Format("select * from t_stock where name = {0}", medCB.SelectedItem.ToString());
 
+            using(SqlConnection connection = new SqlConnection(connStr.ConnectionString))
+            {
+                connection.Open();
+                using (SqlCommand cmx = new SqlCommand("select stock from t_stock where name = '" + medCB.SelectedItem.ToString() + "'", connection))
+                {
+                    using (SqlDataReader rcx = cmx.ExecuteReader())
+                    {
+                        while (rcx.Read())
+                        {
+                            variabl = Convert.ToInt32(rcx.GetValue(0));
+                            variabl += val;
+                        }
+                }
+                    
+
+                    using (SqlCommand command = connection.CreateCommand())
+                {
+                        command.Parameters.AddWithValue("@stock", val);
+                        using (SqlCommand cmd = new SqlCommand("select * from t_stock where name = '" + medCB.SelectedItem.ToString() + "'", connection))
+                            
+                        {
+                            
+                            using (SqlDataReader reader = cmd.ExecuteReader())
+                            {
+                                DataTable dt = new DataTable();
+                                dt.Load(reader);
+                                this.stockList.DataSource = dt;
+                                
+                            }
+                        }
+                        connection.Close();
+
+
+
+                    }
+
+                }
+            }
         }
 
         private void sellMed_Click(object sender, EventArgs e)
